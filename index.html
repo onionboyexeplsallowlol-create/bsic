@@ -2,749 +2,621 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oasis Still — Date-Palm Solar Desalination</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AshPure — Coal Ash Into Clean Water</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --sand: #E7DAB9;
-    --sand-2: #DCCBA0;
-    --paper: #F4ECD8;
-    --ink: #26190F;
-    --ink-soft: #5B4A38;
-    --biochar: #2E211A;
-    --biochar-soft: #7A5C3E;
-    --water: #1E6E77;
-    --water-2: #143F49;
-    --sun: #C98A2B;
-    --sun-2: #E4B24C;
-    --line: rgba(38,25,15,0.16);
-    --card: rgba(255,255,255,0.38);
-    --shadow: 0 1px 0 rgba(38,25,15,0.08);
-    --font-display: "Fraunces", serif;
-    --font-body: "IBM Plex Sans", sans-serif;
-    --font-mono: "IBM Plex Mono", monospace;
+    --bg:#EAE3D5;
+    --surface:#F6F1E6;
+    --surface-2:#DFD6C3;
+    --ink:#241F1B;
+    --ink-soft:#5A4E42;
+    --ink-faint:#8A7C6A;
+    --clay:#A34A26;
+    --clay-dark:#7C3818;
+    --ember:#CC7A2E;
+    --water:#2D7A8C;
+    --water-dark:#1E5866;
+    --water-light:#BFE0E6;
+    --murk:#8C7448;
+    --line: rgba(36,31,27,0.14);
+    --line-strong: rgba(36,31,27,0.3);
+    --radius: 3px;
+    --font-head: 'Zilla Slab', 'Iowan Old Style', 'Georgia', serif;
+    --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
   }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --sand: #241A12;
-      --sand-2: #1B130D;
-      --paper: #2A1F16;
-      --ink: #F1E6D2;
-      --ink-soft: #C9B79A;
-      --biochar: #14100B;
-      --biochar-soft: #A98A5F;
-      --water: #3E9BA5;
-      --water-2: #1E6E77;
-      --sun: #E4B24C;
-      --sun-2: #F3CD77;
-      --line: rgba(241,230,210,0.14);
-      --card: rgba(20,16,11,0.45);
-      --shadow: 0 1px 0 rgba(0,0,0,0.3);
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --bg:#1C1815;
+      --surface:#262019;
+      --surface-2:#332B21;
+      --ink:#F1EAE0;
+      --ink-soft:#C9BCA9;
+      --ink-faint:#93856F;
+      --clay:#E08248;
+      --clay-dark:#F0A26C;
+      --ember:#E3A05A;
+      --water:#6BC3D6;
+      --water-dark:#8FD6E5;
+      --water-light:#294249;
+      --murk:#7A6644;
+      --line: rgba(241,234,224,0.14);
+      --line-strong: rgba(241,234,224,0.3);
     }
   }
   :root[data-theme="dark"]{
-    --sand: #241A12;
-    --sand-2: #1B130D;
-    --paper: #2A1F16;
-    --ink: #F1E6D2;
-    --ink-soft: #C9B79A;
-    --biochar: #14100B;
-    --biochar-soft: #A98A5F;
-    --water: #3E9BA5;
-    --water-2: #1E6E77;
-    --sun: #E4B24C;
-    --sun-2: #F3CD77;
-    --line: rgba(241,230,210,0.14);
-    --card: rgba(20,16,11,0.45);
-    --shadow: 0 1px 0 rgba(0,0,0,0.3);
+    --bg:#1C1815;
+    --surface:#262019;
+    --surface-2:#332B21;
+    --ink:#F1EAE0;
+    --ink-soft:#C9BCA9;
+    --ink-faint:#93856F;
+    --clay:#E08248;
+    --clay-dark:#F0A26C;
+    --ember:#E3A05A;
+    --water:#6BC3D6;
+    --water-dark:#8FD6E5;
+    --water-light:#294249;
+    --murk:#7A6644;
+    --line: rgba(241,234,224,0.14);
+    --line-strong: rgba(241,234,224,0.3);
   }
 
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  *{ box-sizing:border-box; }
+  html{ scroll-padding-top: env(safe-area-inset-top,0px); }
+  html,body{ height:auto; }
   body{
-    background: linear-gradient(180deg, var(--sand) 0%, var(--sand-2) 100%);
-    color: var(--ink);
-    font-family: var(--font-body);
-    line-height:1.5;
-    min-height:100vh;
-  }
-  .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 80px;}
-
-  header.hero{
-    display:grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap:40px;
-    align-items:end;
-    padding-bottom:28px;
-    border-bottom:1px solid var(--line);
-    margin-bottom:36px;
-  }
-  @media (max-width:860px){
-    header.hero{grid-template-columns:1fr; gap:20px;}
-  }
-  .eyebrow-row{
-    display:flex; align-items:center; gap:10px; margin-bottom:14px;
-    color:var(--ink-soft); font-size:13px; letter-spacing:0.01em;
-  }
-  .eyebrow-row .dot{width:6px;height:6px;border-radius:50%;background:var(--sun);}
-  h1{
-    font-family:var(--font-display);
-    font-weight:600;
-    font-size:clamp(34px,5vw,54px);
-    line-height:1.04;
-    margin:0 0 14px;
-    letter-spacing:-0.01em;
-  }
-  .hero p{
-    max-width:52ch;
-    color:var(--ink-soft);
-    font-size:16px;
     margin:0;
-  }
-  .hero-side{
-    font-family:var(--font-mono);
-    font-size:13px;
-    color:var(--ink-soft);
-    border-left:1px solid var(--line);
-    padding-left:20px;
-  }
-  .hero-side .num{
-    font-family:var(--font-display);
-    font-size:40px;
-    color:var(--water);
-    display:block;
-    margin-bottom:4px;
-    font-weight:600;
-  }
-
-  section{margin-bottom:52px;}
-  h2{
-    font-family:var(--font-display);
-    font-weight:600;
-    font-size:26px;
-    margin:0 0 6px;
-  }
-  .section-note{color:var(--ink-soft); font-size:14.5px; margin:0 0 22px; max-width:64ch;}
-
-  /* --- layout: stage + controls --- */
-  .stage-grid{
-    display:grid;
-    grid-template-columns: 1.3fr 0.9fr;
-    gap:28px;
-    align-items:start;
-  }
-  @media (max-width:900px){ .stage-grid{grid-template-columns:1fr;} }
-
-  .stage-card{
-    background: var(--card);
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:18px;
-    box-shadow:var(--shadow);
-  }
-  canvas#basin{width:100%; height:auto; display:block; border-radius:2px;}
-  .stage-caption{
-    display:flex; justify-content:space-between; align-items:baseline;
-    margin-top:12px; font-size:13px; color:var(--ink-soft); font-family:var(--font-mono);
-  }
-  .stage-caption .yield-live{color:var(--water); font-weight:500;}
-
-  .controls-card{
-    background: var(--card);
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:20px 22px;
-    box-shadow:var(--shadow);
-  }
-  .controls-card h3{
-    font-family:var(--font-body); font-weight:600; font-size:14px;
-    margin:0 0 16px; color:var(--ink); text-transform:none;
-  }
-  .field{margin-bottom:18px;}
-  .field label{
-    display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:6px; color:var(--ink);
-  }
-  .field label .val{font-family:var(--font-mono); color:var(--water); font-weight:500;}
-  input[type="range"]{
-    width:100%; accent-color:var(--water);
-    height:4px; background:var(--line); border-radius:2px;
-  }
-  .run-btn{
-    width:100%;
-    margin-top:6px;
-    padding:12px 16px;
-    background:var(--ink);
-    color:var(--paper);
-    border:none;
-    border-radius:3px;
+    background:var(--bg);
+    color:var(--ink);
     font-family:var(--font-body);
-    font-weight:600;
-    font-size:14.5px;
-    cursor:pointer;
-    transition:opacity .15s ease;
+    font-size:16px;
+    line-height:1.6;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    -webkit-text-size-adjust:100%;
   }
-  .run-btn:hover{opacity:0.86;}
-  .run-btn:active{opacity:0.7;}
+  img,svg{ max-width:100%; display:block; }
+  h1,h2,h3{ font-family:var(--font-head); font-weight:600; margin:0; color:var(--ink); line-height:1.15; }
+  p{ margin:0 0 1rem; color:var(--ink-soft); max-width:66ch; }
+  a{ color:var(--clay); }
 
-  /* --- legend chips --- */
-  .legend{display:flex; gap:16px; flex-wrap:wrap; margin:0 0 18px;}
-  .legend .chip{display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--ink-soft);}
-  .legend .swatch{width:11px; height:11px; border-radius:2px; display:inline-block;}
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 24px; }
+  section{ padding:88px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
 
-  /* --- charts --- */
-  .chart-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:24px;
-  }
-  @media (max-width:780px){ .chart-grid{grid-template-columns:1fr;} }
-  .chart-card{
-    background:var(--card); border:1px solid var(--line); border-radius:4px;
-    padding:16px 16px 8px;
-  }
-  .chart-card h4{
-    font-family:var(--font-body); font-weight:600; font-size:13.5px;
-    margin:0 0 10px; color:var(--ink-soft); font-weight:500;
-  }
-  .chart-card .canvas-wrap{position:relative; height:220px;}
-
-  /* --- stats table --- */
-  table.stats{
-    width:100%; border-collapse:collapse; font-size:14px;
-    background:var(--card); border:1px solid var(--line); border-radius:4px; overflow:hidden;
-  }
-  table.stats th, table.stats td{
-    text-align:left; padding:12px 16px; border-bottom:1px solid var(--line);
-  }
-  table.stats th{
-    font-weight:600; color:var(--ink-soft); font-size:12.5px;
+  .eyebrow{
     font-family:var(--font-mono);
+    font-size:12.5px;
+    color:var(--clay);
+    letter-spacing:0.02em;
+    margin:0 0 10px;
   }
-  table.stats tr:last-child td{border-bottom:none;}
-  table.stats td.mat{display:flex; align-items:center; gap:10px; font-weight:500;}
-  table.stats td.mat .swatch{width:10px;height:10px;border-radius:2px;}
-  table.stats td.hero-num{font-family:var(--font-mono); color:var(--water); font-weight:500;}
 
-  footer{
-    margin-top:48px; padding-top:24px; border-top:1px solid var(--line);
-    color:var(--ink-soft); font-size:13px; max-width:74ch;
+  /* ---------- topbar ---------- */
+  .topbar{
+    display:flex; align-items:baseline; justify-content:space-between;
+    padding:22px 24px calc(22px + env(safe-area-inset-top,0px));
+    max-width:1040px; margin:0 auto;
   }
-  footer strong{color:var(--ink);}
+  .topbar .mark{ font-family:var(--font-head); font-weight:700; font-size:19px; }
+  .topbar .mark span{ color:var(--clay); }
+  .topbar .tag{ font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding-top:24px; padding-bottom:64px; border-bottom:1px solid var(--line); }
+  .hero-grid{ display:grid; grid-template-columns: 1.15fr 1fr; gap:56px; align-items:center; }
+  .hero h1{ font-size:clamp(44px,7vw,74px); letter-spacing:-0.01em; margin-bottom:18px; }
+  .hero .lede{ font-size:19px; color:var(--ink-soft); max-width:46ch; }
+  .hero .stat-row{ display:flex; gap:28px; margin-top:32px; flex-wrap:wrap; }
+  .stat{ }
+  .stat b{ display:block; font-family:var(--font-head); font-size:26px; color:var(--clay); }
+  .stat span{ font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono); }
+
+  .flow-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:28px 22px 20px;
+  }
+  .flow-card .cap{ font-size:12.5px; color:var(--ink-faint); font-family:var(--font-mono); margin-top:14px; text-align:center; }
+
+  /* ---------- two-col problem ---------- */
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); border-radius:8px; overflow:hidden; margin-top:36px; }
+  .split > div{ padding:30px 30px; }
+  .split > div:first-child{ border-right:1px solid var(--line); background:var(--surface); }
+  .split > div:last-child{ background:var(--surface-2); }
+  .split h3{ font-size:21px; margin-bottom:10px; }
+  .split .icon-row{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .split p{ font-size:15px; }
+  .join{ text-align:center; margin:18px 0 0; font-family:var(--font-mono); font-size:13px; color:var(--ink-faint); }
+
+  /* ---------- timeline ---------- */
+  .timeline{ margin-top:40px; display:flex; flex-direction:column; }
+  .tl-step{ display:grid; grid-template-columns:52px 1fr; gap:22px; padding:20px 0; border-top:1px solid var(--line); }
+  .tl-step:last-child{ border-bottom:1px solid var(--line); }
+  .tl-num{ font-family:var(--font-head); font-size:26px; color:var(--clay); font-weight:600; }
+  .tl-body h4{ font-family:var(--font-body); font-size:16.5px; font-weight:600; margin:0 0 5px; color:var(--ink); }
+  .tl-body p{ font-size:14.5px; margin:0; max-width:60ch; }
+
+  /* ---------- lab / simulator ---------- */
+  .lab{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:34px 30px 30px; margin-top:36px; }
+  .lab-controls{ display:grid; grid-template-columns:1fr 1fr; gap:26px 32px; margin-bottom:8px; }
+  .ctrl label{ display:block; font-size:12.5px; font-family:var(--font-mono); color:var(--ink-faint); margin-bottom:8px; }
+  .pollutant-btns{ display:flex; gap:8px; flex-wrap:wrap; }
+  .pbtn{
+    font-family:var(--font-body); font-size:13.5px; padding:8px 14px;
+    border:1px solid var(--line-strong); border-radius:20px; background:transparent; color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .pbtn.active{ background:var(--clay); border-color:var(--clay); color:#fff; }
+  input[type=range]{ width:100%; accent-color:var(--clay); }
+  .range-out{ font-family:var(--font-mono); font-size:13px; color:var(--ink); float:right; }
+  .toggle-line{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink-soft); }
+  .toggle-line input{ accent-color:var(--clay); width:16px; height:16px; }
+
+  .run-btn{
+    font-family:var(--font-body); font-weight:500; font-size:15px;
+    background:var(--clay); color:#fff; border:none; border-radius:6px;
+    padding:12px 24px; cursor:pointer; margin-top:18px;
+  }
+  .run-btn:active{ transform:scale(0.98); }
+
+  .columns-view{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:36px; }
+  .col-unit{ text-align:center; }
+  .col-label{ font-family:var(--font-mono); font-size:12.5px; color:var(--ink-faint); margin-bottom:10px; }
+  .filter-col{
+    position:relative; height:220px; width:96px; margin:0 auto;
+    border:1px solid var(--line-strong); border-radius:0 0 6px 6px; border-top:none;
+    background:var(--surface-2); overflow:hidden;
+  }
+  .filter-col .media{ position:absolute; inset:0; top:0; }
+  .filter-col .funnel{
+    position:absolute; top:0; left:0; right:0; height:26px;
+    background:var(--surface-2); border-bottom:1px solid var(--line-strong);
+  }
+  .filter-col .layer{ position:absolute; left:0; right:0; }
+  .filter-col .beaker{
+    position:absolute; bottom:0; left:0; right:0; height:74px;
+    background:var(--murk); transition:background 1.1s ease;
+    border-top:1px solid var(--line-strong);
+  }
+  .drip{
+    position:absolute; width:5px; height:5px; border-radius:50%;
+    background:var(--murk); left:50%; top:26px; opacity:0;
+  }
+  .col-metrics{ margin-top:16px; font-size:13px; text-align:left; }
+  .col-metrics div{ display:flex; justify-content:space-between; padding:5px 0; border-top:1px solid var(--line); }
+  .col-metrics span:first-child{ color:var(--ink-faint); }
+  .col-metrics span:last-child{ font-family:var(--font-mono); color:var(--ink); }
+
+  .lab-note{ font-size:13px; color:var(--ink-faint); margin-top:26px; border-left:2px solid var(--line-strong); padding-left:14px; }
+
+  /* ---------- replace grid ---------- */
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+  .chip{
+    border:1px solid var(--line-strong); border-radius:20px; padding:8px 16px;
+    font-size:13.5px; color:var(--ink-soft); background:var(--surface);
+  }
+  .also-list{ margin-top:36px; }
+  .also-list h3{ font-size:18px; margin-bottom:14px; }
+  .also-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .also-item{ border:1px solid var(--line); border-radius:8px; padding:16px 16px; background:var(--surface); }
+  .also-item b{ display:block; font-size:14.5px; margin-bottom:4px; color:var(--ink); }
+  .also-item p{ font-size:13px; margin:0; }
+
+  /* ---------- school model callout ---------- */
+  .callout{
+    border:1px solid var(--clay); border-radius:8px; background:var(--surface);
+    padding:30px 30px; margin-top:36px;
+  }
+  .callout .icon-row{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .recipe-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:18px; }
+  .recipe-grid h4{ font-family:var(--font-body); font-size:14.5px; font-weight:600; margin:0 0 8px; }
+  .recipe-grid ul{ margin:0; padding-left:18px; font-size:14px; color:var(--ink-soft); }
+  .recipe-grid li{ margin-bottom:4px; }
+  .warn{ margin-top:20px; font-size:13.5px; color:var(--clay-dark); font-weight:500; }
+
+  /* ---------- limits ---------- */
+  .limits p{ font-size:15px; }
+
+  /* ---------- sdg ---------- */
+  .sdg-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
+  .sdg-card{ border-radius:8px; padding:18px 18px 16px; color:#fff; }
+  .sdg-card .n{ font-family:var(--font-head); font-size:30px; font-weight:700; opacity:0.9; }
+  .sdg-card .t{ font-family:var(--font-body); font-size:14px; font-weight:600; margin:2px 0 8px; }
+  .sdg-card .d{ font-size:12.5px; line-height:1.45; opacity:0.94; }
+
+  footer{ padding:48px 0 calc(48px + env(safe-area-inset-bottom,0px)); }
+  footer p{ font-size:13px; color:var(--ink-faint); max-width:70ch; }
+
+  ::selection{ background:var(--clay); color:#fff; }
+
+  @media (max-width:760px){
+    section{ padding:56px 0; }
+    .hero-grid{ grid-template-columns:1fr; gap:36px; }
+    .split{ grid-template-columns:1fr; }
+    .split > div:first-child{ border-right:none; border-bottom:1px solid var(--line); }
+    .lab-controls{ grid-template-columns:1fr; }
+    .columns-view{ grid-template-columns:1fr; gap:32px; }
+    .also-grid{ grid-template-columns:1fr 1fr; }
+    .recipe-grid{ grid-template-columns:1fr; }
+    .sdg-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:420px){
+    .also-grid{ grid-template-columns:1fr; }
+    .sdg-grid{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header class="hero">
-    <div>
-      <div class="eyebrow-row"><span class="dot"></span>Solar still simulator</div>
-      <h1>What carbonized date-palm waste actually does to a solar still</h1>
-      <p>Salt doesn't pass through a biochar filter — it passes through a phase change. This simulator models the part date-palm biochar really plays: as a floating solar absorber that pulls more of the sun's energy into evaporation, so more seawater turns to vapor and leaves its salt behind.</p>
-    </div>
-    <div class="hero-side">
-      <span class="num" id="heroYield">—</span>
-      liters of fresh water per m² of basin, per simulated day, with a date-palm biochar absorber at current settings
-    </div>
-  </header>
-
-  <section>
-    <h2>The still, in motion</h2>
-    <p class="section-note">Brine sits under a sloped glass cover. A thin mat of carbonized date-palm fiber floats on the surface, soaking up sunlight at the interface instead of letting it scatter through the bulk water. Vapor rises, condenses on the glass, and drips into the collection channel — arriving with the salt left behind.</p>
-    <div class="stage-grid">
-      <div class="stage-card">
-        <canvas id="basin" width="900" height="420"></canvas>
-        <div class="stage-caption">
-          <span>Animated at 1 simulated day per loop</span>
-          <span class="yield-live"><span id="liveDrops">0.0</span> L collected today</span>
-        </div>
-      </div>
-      <div class="controls-card">
-        <h3>Basin &amp; sun settings</h3>
-        <div class="field">
-          <label>Peak solar irradiance <span class="val" id="vGmax">900 W/m²</span></label>
-          <input type="range" id="gmax" min="500" max="1100" step="10" value="900">
-        </div>
-        <div class="field">
-          <label>Basin surface area <span class="val" id="vArea">1.0 m²</span></label>
-          <input type="range" id="area" min="0.2" max="4" step="0.1" value="1.0">
-        </div>
-        <div class="field">
-          <label>Starting brine volume <span class="val" id="vVol">40 L</span></label>
-          <input type="range" id="vol" min="10" max="150" step="5" value="40">
-        </div>
-        <div class="field">
-          <label>Starting salinity <span class="val" id="vSal">35 g/L (seawater)</span></label>
-          <input type="range" id="sal" min="10" max="80" step="1" value="35">
-        </div>
-        <div class="field">
-          <label>Sunlight hours <span class="val" id="vDay">11 h</span></label>
-          <input type="range" id="day" min="6" max="14" step="0.5" value="11">
-        </div>
-        <button class="run-btn" id="runBtn">Run simulation</button>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Three absorbers, same sun</h2>
-    <p class="section-note">Every curve below runs on the identical solar input from the settings above — only what's floating on the water changes. "Efficiency" here is the fraction of absorbed sunlight that goes straight into evaporating water at the surface, rather than warming the bulk brine or the surrounding air and being lost.</p>
-    <div class="legend">
-      <span class="chip"><span class="swatch" style="background:#8C99A6"></span>Bare water surface · ~35% of absorbed heat becomes vapor</span>
-      <span class="chip"><span class="swatch" style="background:#3B3B3B"></span>Black cloth absorber · ~55%</span>
-      <span class="chip"><span class="swatch" style="background:#7A5C3E"></span>Carbonized date-palm biochar · ~85%</span>
-    </div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <h4>Solar irradiance through the day</h4>
-        <div class="canvas-wrap"><canvas id="chartSun"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h4>Evaporation rate, by absorber</h4>
-        <div class="canvas-wrap"><canvas id="chartRate"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h4>Cumulative fresh water collected</h4>
-        <div class="canvas-wrap"><canvas id="chartCum"></canvas></div>
-      </div>
-      <div class="chart-card">
-        <h4>Salinity left behind in the basin</h4>
-        <div class="canvas-wrap"><canvas id="chartSalt"></canvas></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>End of day</h2>
-    <table class="stats" id="statsTable">
-      <thead>
-        <tr><th>Absorber</th><th>Fresh water collected</th><th>Recovery of starting brine</th><th>Basin salinity, end of day</th><th>Salt saturated?</th></tr>
-      </thead>
-      <tbody id="statsBody"></tbody>
-    </table>
-  </section>
-
-  <footer>
-    <strong>How this is modeled.</strong> Solar input follows a sine curve across the daylight window you set. Each absorber has an absorptance (how much sunlight it captures) and an evaporation efficiency (how much of that captured energy becomes vapor rather than warming the water or the air around it — the number carbonized biochar wins on, because its porous, dark structure traps heat right at the water's surface). Evaporated volume is tallied as fresh distillate; remaining salt concentrates in the shrinking brine until it hits NaCl's solubility limit (~360 g/L), at which point salt begins to crystallize out and evaporation from that basin is capped. This is a simplified energy-balance teaching model, not a substitute for lab measurement of a specific biochar sample.
-  </footer>
-
+<div class="topbar">
+  <div class="mark">Ash<span>Pure</span></div>
+  <div class="tag">science fair project · water &amp; materials</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">coal-ash pond waste → ceramic filter</p>
+      <h1>Turning power-plant ash into clean water.</h1>
+      <p class="lede">AshPure converts hazardous coal-ash pond waste into a porous ceramic that filters polluted water — closing the loop between two problems that usually sit far apart.</p>
+      <div class="stat-row">
+        <div class="stat"><b>~0.6 µm</b><span>typical pore size, fly-ash membrane</span></div>
+        <div class="stat"><b>800–1150°C</b><span>firing temperature in the kiln</span></div>
+        <div class="stat"><b>2</b><span>problems solved by 1 material</span></div>
+      </div>
+    </div>
+    <div class="flow-card">
+      <svg id="heroSvg" viewBox="0 0 320 190" width="100%" height="190" role="img" aria-label="Diagram of coal ash pond waste being fired into a ceramic filter that produces clean water">
+        <title>Ash pond to clean water</title>
+        <g id="pondGroup">
+          <rect x="18" y="90" width="70" height="46" rx="4" fill="none" stroke="var(--ink)" stroke-opacity="0.5" stroke-width="1.2"/>
+          <rect id="pondFill" x="20" y="108" width="66" height="26" fill="var(--murk)"/>
+          <line x1="14" y1="90" x2="92" y2="90" stroke="var(--ink)" stroke-opacity="0.5" stroke-width="1.2"/>
+        </g>
+        <text x="53" y="158" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--ink-faint)">ash pond</text>
+
+        <path d="M96 112 L138 112" stroke="var(--ember)" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arrowHead)">
+          <animate attributeName="stroke-dashoffset" from="16" to="0" dur="0.9s" repeatCount="indefinite"/>
+        </path>
+
+        <g id="kilnGroup">
+          <rect x="140" y="82" width="56" height="60" rx="6" fill="none" stroke="var(--clay)" stroke-width="1.4"/>
+          <line x1="140" y1="98" x2="196" y2="98" stroke="var(--clay)" stroke-width="1"/>
+          <circle cx="150" cy="118" r="2.6" fill="var(--ember)"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.1s" repeatCount="indefinite"/></circle>
+          <circle cx="162" cy="123" r="2.2" fill="var(--ember)"><animate attributeName="opacity" values="1;0.4;1" dur="1.3s" repeatCount="indefinite"/></circle>
+          <circle cx="174" cy="118" r="2.4" fill="var(--ember)"><animate attributeName="opacity" values="0.5;1;0.5" dur="0.9s" repeatCount="indefinite"/></circle>
+          <circle cx="186" cy="123" r="2" fill="var(--ember)"><animate attributeName="opacity" values="1;0.5;1" dur="1.2s" repeatCount="indefinite"/></circle>
+        </g>
+        <text x="168" y="158" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--ink-faint)">kiln</text>
+
+        <path d="M198 112 L240 112" stroke="var(--water)" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arrowHead2)">
+          <animate attributeName="stroke-dashoffset" from="16" to="0" dur="0.9s" repeatCount="indefinite"/>
+        </path>
+
+        <g>
+          <path d="M262 84 C262 84 246 108 246 122 A16 16 0 0 0 278 122 C278 108 262 84 262 84 Z" fill="none" stroke="var(--water)" stroke-width="1.4"/>
+          <path id="dropFill" d="M262 96 C262 96 253 111 253 122 A9 9 0 0 0 271 122 C271 111 262 96 262 96 Z" fill="var(--water)" opacity="0">
+            <animate attributeName="opacity" values="0;0.85;0.85;0" dur="1.8s" repeatCount="indefinite"/>
+          </path>
+        </g>
+        <text x="262" y="158" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--ink-faint)">clean water</text>
+
+        <defs>
+          <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--ember)"/></marker>
+          <marker id="arrowHead2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--water)"/></marker>
+        </defs>
+      </svg>
+      <div class="cap">coal power waste → ceramic filter → cleaner water</div>
+    </div>
+  </div>
+</header>
+
+<section class="problem">
+  <div class="wrap">
+    <p class="eyebrow">why bother</p>
+    <h2 style="font-size:32px;max-width:22ch;">Two problems that don't usually meet each other.</h2>
+    <div class="split">
+      <div>
+        <div class="icon-row">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 18h16M6 18V10a6 6 0 0112 0v8" stroke="var(--clay)" stroke-width="1.6"/><path d="M9 18v-5M12 18v-6M15 18v-4" stroke="var(--clay)" stroke-width="1.6" stroke-opacity="0.5"/></svg>
+          <h3>Ash ponds</h3>
+        </div>
+        <p>Coal power plants store leftover fly ash as wet slurry in large storage ponds. Left alone, those ponds can leak pollutants into nearby groundwater — a long-term liability that just sits there.</p>
+      </div>
+      <div>
+        <div class="icon-row">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3s7 7.5 7 12a7 7 0 11-14 0c0-4.5 7-12 7-12z" stroke="var(--water)" stroke-width="1.6"/></svg>
+          <h3>Polluted water</h3>
+        </div>
+        <p>Meanwhile, communities everywhere need affordable ways to treat contaminated water — and conventional filter materials still have to be mined, shaped, and manufactured from scratch.</p>
+      </div>
+    </div>
+    <p class="join">ash pond waste + water treatment need → AshPure ceramic filter</p>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <p class="eyebrow">how it's made</p>
+    <h2 style="font-size:32px;max-width:24ch;">From wet slurry to a working filter.</h2>
+    <p style="margin-top:14px;">Real fly ash has to be dewatered, tested, and fired under controlled conditions — never handled raw. The steps below describe the actual manufacturing process; the school-safe version further down swaps in clay and charcoal.</p>
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-num">01</div>
+        <div class="tl-body"><h4>Dewater the slurry</h4><p>The pond slurry settles in a tank so heavier ash sinks and clear water rises. A belt filter press then squeezes the thick ash into a solid cake, separating most of the water out.</p></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">02</div>
+        <div class="tl-body"><h4>Dry, test, and grind</h4><p>The ash cake is dried, checked for heavy metals and radioactivity, then ground into a fine, consistent powder.</p></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">03</div>
+        <div class="tl-body"><h4>Mix the paste</h4><p>Ash is combined with clay or sand for structure, a pore-forming material like sawdust or starch, a binder, and water — forming a workable paste.</p></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">04</div>
+        <div class="tl-body"><h4>Shape and dry</h4><p>The paste is pressed into a disk, tube, or plate and dried slowly, so it doesn't crack as the water leaves it.</p></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">05</div>
+        <div class="tl-body"><h4>Fire in a kiln</h4><p>Heated to roughly 800–1150°C, the binder and pore-former burn away, leaving connected pores behind — and the ash and clay fuse into a hard ceramic.</p></div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">06</div>
+        <div class="tl-body"><h4>Coat, install, and test</h4><p>An optional layer of activated carbon or zeolite can be added for specific pollutants, then the filter is measured for pore size, strength, flow rate, and removal performance before installation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-section">
+  <div class="wrap">
+    <p class="eyebrow">try it yourself</p>
+    <h2 style="font-size:32px;max-width:24ch;">Filter lab — compare a plain sand filter with AshPure.</h2>
+    <p style="margin-top:14px;">Pick a pollutant, set how dirty the water is, and run the simulation. This is a simplified teaching model built from published ranges for fly-ash ceramic filters — not measured lab data.</p>
+
+    <div class="lab">
+      <div class="lab-controls">
+        <div class="ctrl">
+          <label>pollutant type</label>
+          <div class="pollutant-btns">
+            <button class="pbtn active" data-pollutant="silt">Suspended silt</button>
+            <button class="pbtn" data-pollutant="dye">Dye / colour</button>
+            <button class="pbtn" data-pollutant="metal">Trace heavy metals</button>
+          </div>
+        </div>
+        <div class="ctrl">
+          <label>starting turbidity <span class="range-out" id="turbOut">250 mg/L</span></label>
+          <input type="range" id="turbSlider" min="50" max="500" step="10" value="250">
+        </div>
+        <div class="ctrl">
+          <label>&nbsp;</label>
+          <div class="toggle-line"><input type="checkbox" id="coatToggle"> activated-carbon / zeolite coating on the AshPure filter</div>
+        </div>
+        <div class="ctrl">
+          <button class="run-btn" id="runBtn">Run simulation</button>
+        </div>
+      </div>
+
+      <div class="columns-view">
+        <div class="col-unit">
+          <div class="col-label">control — sand &amp; gravel</div>
+          <div class="filter-col" id="colControl">
+            <div class="funnel"></div>
+            <div class="beaker" id="beakerControl"></div>
+          </div>
+          <div class="col-metrics" id="metricsControl">
+            <div><span>turbidity removed</span><span>—</span></div>
+            <div><span>output turbidity</span><span>—</span></div>
+            <div><span>flow rate</span><span>—</span></div>
+          </div>
+        </div>
+        <div class="col-unit">
+          <div class="col-label">AshPure — ash, clay &amp; charcoal</div>
+          <div class="filter-col" id="colAsh">
+            <div class="funnel"></div>
+            <div class="beaker" id="beakerAsh"></div>
+          </div>
+          <div class="col-metrics" id="metricsAsh">
+            <div><span>turbidity removed</span><span>—</span></div>
+            <div><span>output turbidity</span><span>—</span></div>
+            <div><span>flow rate</span><span>—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="lab-note">How this is modeled: each filter has a removal fraction per pollutant type, taken loosely from ranges reported for fly-ash ceramic membranes versus plain sand media. AshPure removes particles well on its own; dye and dissolved metals need the optional carbon/zeolite coating to drop meaningfully. Finer, more effective filtration always trades off against slower flow. This is an educational approximation, not a lab measurement of a real sample.</p>
+    </div>
+  </div>
+</section>
+
+<section class="replaces">
+  <div class="wrap">
+    <p class="eyebrow">what it could replace</p>
+    <h2 style="font-size:32px;max-width:24ch;">Not everything — but a useful slice of it.</h2>
+    <p style="margin-top:14px;">AshPure wouldn't stand in for every water filter. It would need to be engineered for the specific pollutant it's targeting. Where it fits, though, it could reduce the need for:</p>
+    <div class="chips">
+      <div class="chip">Conventional ceramic filter material</div>
+      <div class="chip">Clay used in filter production</div>
+      <div class="chip">Mined silica / alumina raw material</div>
+      <div class="chip">Some activated filter media</div>
+      <div class="chip">Disposable plastic filter cartridges</div>
+    </div>
+
+    <div class="also-list">
+      <h3>Other things coal ash can become</h3>
+      <div class="also-grid">
+        <div class="also-item"><b>Zeolites</b><p>Porous minerals used for water purification, odour removal, and gas separation.</p></div>
+        <div class="also-item"><b>Glass-ceramic panels</b><p>Hard, glass-like tiles made from ash and other minerals.</p></div>
+        <div class="also-item"><b>Insulation foam</b><p>Lightweight, porous material that reduces heat transfer.</p></div>
+        <div class="also-item"><b>Pigments</b><p>Iron-rich ash processed into coloured coating materials.</p></div>
+        <div class="also-item"><b>Catalyst supports</b><p>Porous structures that help chemical reactions along.</p></div>
+        <div class="also-item"><b>Pervious pavement</b><p>Porous surfaces that let rainwater soak into the ground.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="school-model">
+  <div class="wrap">
+    <p class="eyebrow">build a safe model</p>
+    <h2 style="font-size:32px;max-width:24ch;">A classroom-safe version of AshPure.</h2>
+    <div class="callout">
+      <div class="icon-row">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v6M9 5h6M6 10h12l-1.2 9.5A2 2 0 0114.8 21H9.2a2 2 0 01-2-1.5L6 10z" stroke="var(--clay)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <h3 style="font-size:19px;">Never use real ash-pond material — build the model with safe substitutes.</h3>
+      </div>
+      <p style="font-size:14.5px;">Make two small columns in a funnel or cut bottle, pour the same colored water through both, and compare.</p>
+      <div class="recipe-grid">
+        <div>
+          <h4>Control filter</h4>
+          <ul>
+            <li>Coarse sand</li>
+            <li>Gravel</li>
+          </ul>
+        </div>
+        <div>
+          <h4>AshPure model</h4>
+          <ul>
+            <li>Clay</li>
+            <li>Fine sand</li>
+            <li>Crushed charcoal</li>
+            <li>A pinch of starch or sawdust (optional, mimics the pore-former)</li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:14.5px;margin-top:18px;">Measure what changes: colour removed, flow speed, water clarity, and how much water passes through in a set time. Do the same settle-and-press demo for dewatering with sand-and-water slurry, a cloth, and a coffee filter.</p>
+      <p class="warn">Do not drink the filtered water, and never use real ash from an ash pond.</p>
+    </div>
+  </div>
+</section>
+
+<section class="limits">
+  <div class="wrap">
+    <p class="eyebrow">be honest about it</p>
+    <h2 style="font-size:32px;max-width:24ch;">What AshPure wouldn't fix.</h2>
+    <p style="margin-top:14px;">AshPure mainly removes suspended particles and some larger contaminants — it wouldn't automatically make water safe to drink. Dissolved salts, microbes, and many chemicals pass straight through a plain ceramic membrane unless it carries an added treatment layer, and every version would need to be engineered and tested for the pollutant it's meant to catch.</p>
+  </div>
+</section>
+
+<section class="sdgs">
+  <div class="wrap">
+    <p class="eyebrow">bigger picture</p>
+    <h2 style="font-size:32px;max-width:26ch;">Where this fits the UN Sustainable Development Goals.</h2>
+    <div class="sdg-grid">
+      <div class="sdg-card" style="background:#26BDE2;"><div class="n">6</div><div class="t">Clean water and sanitation</div><div class="d">Turns waste into an affordable material for treating polluted water.</div></div>
+      <div class="sdg-card" style="background:#FD9D24;"><div class="n">9</div><div class="t">Industry, innovation and infrastructure</div><div class="d">A new, low-cost use for an industrial by-product that usually goes to waste.</div></div>
+      <div class="sdg-card" style="background:#FD6925;"><div class="n">11</div><div class="t">Sustainable cities and communities</div><div class="d">Cuts the long-term storage and leak risk of coal-ash ponds near communities.</div></div>
+      <div class="sdg-card" style="background:#BF8B2E;"><div class="n">12</div><div class="t">Responsible consumption and production</div><div class="d">Reuses hazardous waste instead of mining new raw material for filters.</div></div>
+      <div class="sdg-card" style="background:#4C9F38;"><div class="n">3</div><div class="t">Good health and well-being</div><div class="d">Cleaner drinking water and less groundwater contamination near ash sites.</div></div>
+      <div class="sdg-card" style="background:#56C02B;"><div class="n">15</div><div class="t">Life on land</div><div class="d">Reduces the chance of ash pollutants leaching into soil and groundwater.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>AshPure is a student science-fair concept. Figures and behaviour in the filter lab are simplified, illustrative estimates drawn from published ranges for fly-ash ceramic membranes — not a substitute for lab-measured data on a real sample. Never handle real coal ash without proper testing and safety equipment.</p>
+  </div>
+</footer>
+
 <script>
 (function(){
-  "use strict";
+  var pollutantBtns = document.querySelectorAll('.pbtn');
+  var turbSlider = document.getElementById('turbSlider');
+  var turbOut = document.getElementById('turbOut');
+  var coatToggle = document.getElementById('coatToggle');
+  var runBtn = document.getElementById('runBtn');
 
-  // ---------- constants ----------
-  var L_V = 2257; // kJ/kg latent heat of vaporization
-  var SAT_SALINITY = 360; // g/L, NaCl solubility ceiling used as cap
+  var state = { pollutant: 'silt' };
 
-  var MATERIALS = [
-    { key:"bare",    label:"Bare water surface",            alpha:0.85, eff:0.35, color:"#8C99A6" },
-    { key:"cloth",   label:"Black cloth absorber",           alpha:0.92, eff:0.55, color:"#3B3B3B" },
-    { key:"biochar", label:"Carbonized date-palm biochar",   alpha:0.95, eff:0.85, color:"#7A5C3E" }
-  ];
-
-  // ---------- dom ----------
-  var $ = function(id){ return document.getElementById(id); };
-  var gmaxEl = $("gmax"), areaEl = $("area"), volEl = $("vol"), salEl = $("sal"), dayEl = $("day");
-  var vGmax = $("vGmax"), vArea = $("vArea"), vVol = $("vVol"), vSal = $("vSal"), vDay = $("vDay");
-  var runBtn = $("runBtn"), heroYield = $("heroYield"), liveDrops = $("liveDrops");
-  var statsBody = $("statsBody");
-
-  function fmt(n, d){ d = d===undefined?2:d; return Number(n).toFixed(d); }
-
-  function readParams(){
-    return {
-      Gmax: parseFloat(gmaxEl.value),
-      A: parseFloat(areaEl.value),
-      V0: parseFloat(volEl.value),
-      S0conc: parseFloat(salEl.value), // g/L
-      dayLen: parseFloat(dayEl.value)
-    };
-  }
-
-  function updateLabels(){
-    var p = readParams();
-    vGmax.textContent = p.Gmax + " W/m²";
-    vArea.textContent = fmt(p.A,1) + " m²";
-    vVol.textContent = fmt(p.V0,0) + " L";
-    vSal.textContent = fmt(p.S0conc,0) + " g/L" + (p.S0conc>=32 && p.S0conc<=38 ? " (seawater)" : "");
-    vDay.textContent = fmt(p.dayLen,1) + " h";
-  }
-
-  // ---------- simulation ----------
-  // Returns per-material time series and summary stats.
-  function simulate(p){
-    var dt = 0.05; // hours
-    var steps = Math.round(p.dayLen/dt);
-    var tArr = [];
-    var G = [];
-
-    for (var i=0;i<=steps;i++){
-      var t = i*dt;
-      tArr.push(t);
-      var g = p.Gmax * Math.max(0, Math.sin(Math.PI * t / p.dayLen));
-      G.push(g);
-    }
-
-    var results = {};
-    MATERIALS.forEach(function(m){
-      var S0_mass = p.S0conc * p.V0; // grams of salt, constant
-      var V = p.V0; // liters remaining
-      var rate = []; // L/hr
-      var cum = [];  // cumulative L
-      var salinity = []; // g/L
-      var cumV = 0;
-      var saturatedAt = null;
-
-      for (var i=0;i<=steps;i++){
-        var g = G[i];
-        var Qsolar = m.alpha * g * p.A; // W
-        var Qevap = m.eff * Qsolar;     // W devoted to evaporation
-        var mdot_kg_s = Qevap / (L_V*1000); // kg/s
-        var litersThisStep = mdot_kg_s * dt*3600; // kg ~ L
-
-        var currentSalinity = V>0 ? (S0_mass/V) : SAT_SALINITY;
-        if (currentSalinity >= SAT_SALINITY){
-          litersThisStep = 0;
-          if (saturatedAt===null) saturatedAt = tArr[i];
-        } else {
-          var minV = S0_mass/SAT_SALINITY;
-          if (V - litersThisStep < minV){
-            litersThisStep = Math.max(0, V - minV);
-          }
-        }
-
-        V = Math.max(V - litersThisStep, S0_mass/SAT_SALINITY);
-        cumV += litersThisStep;
-
-        rate.push(litersThisStep/dt); // L/hr
-        cum.push(cumV);
-        salinity.push(S0_mass/V);
-      }
-
-      results[m.key] = {
-        rate: rate, cum: cum, salinity: salinity,
-        totalL: cumV,
-        finalSalinity: salinity[salinity.length-1],
-        saturated: saturatedAt!==null,
-        saturatedAt: saturatedAt,
-        recovery: cumV/p.V0*100
-      };
-    });
-
-    return { t: tArr, G: G, results: results };
-  }
-
-  // ---------- charts ----------
-  var chartSun, chartRate, chartCum, chartSalt;
-  var ctxStyle = {
-    grid: getComputedStyle(document.documentElement),
+  var REMOVAL = {
+    control: { silt: 0.40, dye: 0.10, metal: 0.05 },
+    ash:     { silt: 0.90, dye: 0.55, metal: 0.15 },
+    ashCoat: { silt: 0.92, dye: 0.80, metal: 0.60 }
   };
+  var BASE_FLOW = { control: 12, ash: 8 };
 
-  function themeColor(varName){
-    return getComputedStyle(document.body).getPropertyValue(varName).trim();
-  }
-
-  function baseAxisOpts(){
-    var ink = themeColor('--ink-soft') || '#5B4A38';
-    var line = themeColor('--line') || 'rgba(0,0,0,0.1)';
-    return {
-      x:{ ticks:{ color: ink, font:{ family:"IBM Plex Mono", size:10 }, maxTicksLimit:7 }, grid:{ color: line, drawTicks:false } },
-      y:{ ticks:{ color: ink, font:{ family:"IBM Plex Mono", size:10 } }, grid:{ color: line, drawTicks:false }, beginAtZero:true }
-    };
-  }
-
-  function baseChartOpts(yTitle){
-    var opts = {
-      responsive:true, maintainAspectRatio:false,
-      animation:{ duration:500 },
-      plugins:{ legend:{ display:false }, tooltip:{ mode:'index', intersect:false } },
-      interaction:{ mode:'index', intersect:false },
-      elements:{ point:{ radius:0 }, line:{ borderWidth:2, tension:0.25 } },
-      scales: baseAxisOpts()
-    };
-    if (yTitle){ opts.scales.y.title = { display:true, text:yTitle, color: themeColor('--ink-soft'), font:{ family:"IBM Plex Sans", size:11 } }; }
-    return opts;
-  }
-
-  function buildCharts(sim){
-    if (typeof Chart === 'undefined'){
-      console.warn('Chart.js failed to load; skipping charts.');
-      return;
-    }
-    var labels = sim.t.map(function(t){ return t.toFixed(1); });
-
-    if (chartSun) chartSun.destroy();
-    chartSun = new Chart($("chartSun").getContext("2d"), {
-      type:'line',
-      data:{ labels:labels, datasets:[{ data: sim.G, borderColor:"#C98A2B", backgroundColor:"rgba(201,138,43,0.12)", fill:true }] },
-      options: baseChartOpts("W/m²")
+  pollutantBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      pollutantBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      state.pollutant = btn.getAttribute('data-pollutant');
     });
-
-    if (chartRate) chartRate.destroy();
-    chartRate = new Chart($("chartRate").getContext("2d"), {
-      type:'line',
-      data:{ labels:labels, datasets: MATERIALS.map(function(m){
-        return { data: sim.results[m.key].rate, borderColor:m.color, backgroundColor:'transparent' };
-      })},
-      options: baseChartOpts("L / hour")
-    });
-
-    if (chartCum) chartCum.destroy();
-    chartCum = new Chart($("chartCum").getContext("2d"), {
-      type:'line',
-      data:{ labels:labels, datasets: MATERIALS.map(function(m){
-        return { data: sim.results[m.key].cum, borderColor:m.color, backgroundColor:'transparent' };
-      })},
-      options: baseChartOpts("Liters collected")
-    });
-
-    if (chartSalt) chartSalt.destroy();
-    chartSalt = new Chart($("chartSalt").getContext("2d"), {
-      type:'line',
-      data:{ labels:labels, datasets: MATERIALS.map(function(m){
-        return { data: sim.results[m.key].salinity, borderColor:m.color, backgroundColor:'transparent' };
-      })},
-      options: baseChartOpts("g salt / L brine")
-    });
-  }
-
-  function buildStats(sim, p){
-    statsBody.innerHTML = "";
-    MATERIALS.forEach(function(m){
-      var r = sim.results[m.key];
-      var tr = document.createElement("tr");
-      tr.innerHTML =
-        '<td class="mat"><span class="swatch" style="background:'+m.color+'"></span>'+m.label+'</td>' +
-        '<td class="hero-num">'+fmt(r.totalL,1)+' L</td>' +
-        '<td>'+fmt(r.recovery,1)+'%</td>' +
-        '<td>'+fmt(r.finalSalinity,0)+' g/L</td>' +
-        '<td>'+(r.saturated ? ('yes, at ~'+fmt(r.saturatedAt,1)+' h') : 'no')+'</td>';
-      statsBody.appendChild(tr);
-    });
-    heroYield.textContent = fmt(sim.results.biochar.totalL / p.A, 1);
-  }
-
-  // ---------- basin animation ----------
-  var canvas = $("basin"), cctx = canvas.getContext("2d");
-  var dpr = window.devicePixelRatio || 1;
-  function sizeCanvas(){
-    var w = canvas.clientWidth;
-    var h = w * (420/900);
-    canvas.width = w*dpr; canvas.height = h*dpr;
-    cctx.setTransform(dpr,0,0,dpr,0,0);
-    canvas._w = w; canvas._h = h;
-  }
-
-  var vapor = [];
-  function seedVapor(){
-    vapor = [];
-    for (var i=0;i<26;i++){
-      vapor.push({ x: Math.random(), y: Math.random(), speed: 0.15+Math.random()*0.25, drift: (Math.random()-0.5)*0.1, r: 1.5+Math.random()*2.5, life: Math.random() });
-    }
-  }
-  seedVapor();
-
-  var animT = 0; // 0..1 loop position through the simulated day
-  var loopDurationSec = 16;
-  var lastFrame = null;
-  var currentSim = null;
-  var currentParams = null;
-  var dropCount = 0;
-
-  function colorMix(){
-    return {
-      sand: themeColor('--sand') || '#E7DAB9',
-      water: themeColor('--water') || '#1E6E77',
-      water2: themeColor('--water-2') || '#143F49',
-      biochar: themeColor('--biochar') || '#2E211A',
-      biocharSoft: themeColor('--biochar-soft') || '#7A5C3E',
-      sun: themeColor('--sun') || '#C98A2B',
-      sun2: themeColor('--sun-2') || '#E4B24C',
-      ink: themeColor('--ink') || '#26190F',
-      paper: themeColor('--paper') || '#F4ECD8',
-      line: themeColor('--line') || 'rgba(38,25,15,0.16)'
-    };
-  }
-
-  function drawBasin(dtSec){
-    var w = canvas._w, h = canvas._h;
-    var c = colorMix();
-    cctx.clearRect(0,0,w,h);
-
-    var groundY = h*0.82;
-    var basinLeft = w*0.06, basinRight = w*0.72, basinTop = h*0.30;
-
-    // sky
-    var skyGrad = cctx.createLinearGradient(0,0,0,groundY);
-    skyGrad.addColorStop(0, c.paper);
-    skyGrad.addColorStop(1, c.sand);
-    cctx.fillStyle = skyGrad;
-    cctx.fillRect(0,0,w,groundY);
-
-    // sun arc
-    var dayFrac = animT; // 0..1
-    var sunX = w*0.1 + dayFrac*w*0.8;
-    var sunY = h*0.22 - Math.sin(Math.PI*dayFrac)*h*0.14;
-    var intensity = Math.max(0.15, Math.sin(Math.PI*dayFrac));
-    cctx.beginPath();
-    cctx.arc(sunX, sunY, 14+intensity*6, 0, Math.PI*2);
-    var sg = cctx.createRadialGradient(sunX,sunY,2,sunX,sunY,26);
-    sg.addColorStop(0, c.sun2); sg.addColorStop(1, 'rgba(0,0,0,0)');
-    cctx.fillStyle = sg; cctx.fill();
-    cctx.beginPath();
-    cctx.arc(sunX, sunY, 8, 0, Math.PI*2);
-    cctx.fillStyle = c.sun; cctx.fill();
-
-    // sun rays toward basin
-    cctx.strokeStyle = 'rgba(201,138,43,'+(0.10+intensity*0.12)+')';
-    cctx.lineWidth = 1.4;
-    for (var i=0;i<4;i++){
-      var tx = basinLeft + (basinRight-basinLeft)*(0.2+0.2*i);
-      cctx.beginPath(); cctx.moveTo(sunX,sunY); cctx.lineTo(tx, basinTop+6); cctx.stroke();
-    }
-
-    // basin body (brine)
-    var brineTop = basinTop+18;
-    var brineBottom = groundY-10;
-    cctx.fillStyle = c.water2;
-    cctx.fillRect(basinLeft, basinTop, basinRight-basinLeft, groundY-basinTop);
-    var waterGrad = cctx.createLinearGradient(0,brineTop,0,brineBottom);
-    waterGrad.addColorStop(0, c.water);
-    waterGrad.addColorStop(1, c.water2);
-    cctx.fillStyle = waterGrad;
-    cctx.fillRect(basinLeft+4, brineTop, basinRight-basinLeft-8, brineBottom-brineTop);
-
-    // floating biochar mat
-    var matY = brineTop-4;
-    cctx.fillStyle = c.biocharSoft;
-    cctx.globalAlpha = 0.9;
-    for (var mx = basinLeft+10; mx < basinRight-10; mx += 22){
-      cctx.beginPath();
-      cctx.ellipse(mx+ (Math.sin(animT*40+mx)*1.2), matY, 13, 4.5, 0, 0, Math.PI*2);
-      cctx.fillStyle = c.biochar;
-      cctx.fill();
-      cctx.beginPath();
-      cctx.ellipse(mx+6+ (Math.sin(animT*40+mx+2)*1.2), matY-1.5, 9, 3.2, 0, 0, Math.PI*2);
-      cctx.fillStyle = c.biocharSoft;
-      cctx.fill();
-    }
-    cctx.globalAlpha = 1;
-
-    // glass cover (sloped)
-    cctx.strokeStyle = 'rgba(255,255,255,0.55)';
-    cctx.lineWidth = 2;
-    cctx.beginPath();
-    cctx.moveTo(basinLeft-6, basinTop-2);
-    cctx.lineTo(basinRight*0.5, h*0.08);
-    cctx.lineTo(basinRight+22, basinTop-2);
-    cctx.stroke();
-    cctx.fillStyle = 'rgba(255,255,255,0.06)';
-    cctx.beginPath();
-    cctx.moveTo(basinLeft-6, basinTop-2);
-    cctx.lineTo(basinRight*0.5, h*0.08);
-    cctx.lineTo(basinRight+22, basinTop-2);
-    cctx.closePath();
-    cctx.fill();
-
-    // vapor particles
-    var evapBoost = 0.4 + intensity*1.2;
-    vapor.forEach(function(v){
-      v.y -= v.speed*evapBoost*dtSec*0.08;
-      v.x += v.drift*dtSec*0.02;
-      v.life -= dtSec*0.05*evapBoost;
-      if (v.life<=0 || v.y<0.15){
-        v.y = 0.95; v.x = Math.random(); v.life = 1;
-      }
-      var px = basinLeft+10 + v.x*(basinRight-basinLeft-20);
-      var py = matY - (matY-h*0.10)*(1-v.y);
-      cctx.beginPath();
-      cctx.arc(px, py, v.r, 0, Math.PI*2);
-      cctx.fillStyle = 'rgba(255,255,255,'+(0.35*v.life*intensity+0.05)+')';
-      cctx.fill();
-    });
-
-    // condensate channel + collection vessel
-    var vesselX = basinRight+40, vesselY = h*0.30, vesselW = 46, vesselH = h*0.42;
-    cctx.strokeStyle = c.line; cctx.lineWidth = 1.4;
-    cctx.strokeRect(vesselX, vesselY, vesselW, vesselH);
-    var fillFrac = currentSim ? Math.min(1, currentSim.liveFrac||0) : 0;
-    cctx.fillStyle = 'rgba(62,155,165,0.35)';
-    cctx.fillRect(vesselX+2, vesselY+vesselH-(vesselH-4)*fillFrac, vesselW-4, (vesselH-4)*fillFrac);
-    cctx.fillStyle = c.ink;
-    cctx.font = '11px "IBM Plex Mono"';
-    cctx.textAlign = 'center';
-    cctx.fillText('fresh water', vesselX+vesselW/2, vesselY-8);
-
-    // drip line from cover to vessel
-    cctx.strokeStyle = 'rgba(255,255,255,0.4)';
-    cctx.beginPath();
-    cctx.moveTo(basinRight+22, basinTop-2);
-    cctx.lineTo(vesselX+vesselW/2, vesselY);
-    cctx.stroke();
-
-    // ground / sand
-    cctx.fillStyle = c.sand;
-    cctx.fillRect(0, groundY, w, h-groundY);
-
-    // labels
-    cctx.fillStyle = c.ink;
-    cctx.font = '11px "IBM Plex Sans"';
-    cctx.textAlign = 'left';
-    cctx.globalAlpha = 0.75;
-    cctx.fillText('brine, concentrating as it evaporates', basinLeft, groundY+16);
-    cctx.fillText('carbonized date-palm mat, floating at the surface', basinLeft, basinTop+10);
-    cctx.globalAlpha = 1;
-  }
-
-  function frame(ts){
-    if (lastFrame===null) lastFrame = ts;
-    var dtSec = (ts-lastFrame)/1000;
-    lastFrame = ts;
-
-    animT += dtSec/loopDurationSec;
-    if (animT>1){
-      animT -= 1;
-      dropCount = 0;
-    }
-    if (currentSim){
-      var idx = Math.min(currentSim.t.length-1, Math.floor(animT*(currentSim.t.length-1)));
-      var totalAtT = currentSim.results.biochar.cum[idx];
-      var totalAll = currentSim.results.biochar.totalL || 1;
-      currentSim.liveFrac = totalAtT/ (currentParams.V0*0.5 || totalAll || 1);
-      liveDrops.textContent = fmt(totalAtT,1);
-    }
-    drawBasin(dtSec);
-    requestAnimationFrame(frame);
-  }
-
-  // ---------- run ----------
-  function run(){
-    var p = readParams();
-    updateLabels();
-    var sim = simulate(p);
-    currentSim = sim;
-    currentParams = p;
-    try { buildCharts(sim); } catch(e){ console.error('Chart build failed:', e); }
-    try { buildStats(sim, p); } catch(e){ console.error('Stats build failed:', e); }
-  }
-
-  [gmaxEl,areaEl,volEl,salEl,dayEl].forEach(function(el){
-    el.addEventListener('input', updateLabels);
   });
-  runBtn.addEventListener('click', run);
-  window.addEventListener('resize', sizeCanvas);
 
-  sizeCanvas();
-  updateLabels();
-  try { run(); } catch(e){ console.error('Initial run failed:', e); }
-  requestAnimationFrame(frame);
+  turbSlider.addEventListener('input', function(){
+    turbOut.textContent = turbSlider.value + ' mg/L';
+  });
 
+  function murkColor(turbidity){
+    var t = Math.max(0, Math.min(1, turbidity / 500));
+    var clear = [191, 224, 230];
+    var murk = [140, 116, 72];
+    var r = Math.round(clear[0] + (murk[0]-clear[0]) * t);
+    var g = Math.round(clear[1] + (murk[1]-clear[1]) * t);
+    var b = Math.round(clear[2] + (murk[2]-clear[2]) * t);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  function fmt(n, unit){ return Math.round(n) + (unit ? ' ' + unit : ''); }
+
+  function runFor(kind, inputTurb, pollutant, coated){
+    var key = kind === 'ash' && coated ? 'ashCoat' : kind;
+    var removal = REMOVAL[key][pollutant];
+    var outputTurb = inputTurb * (1 - removal);
+    var baseFlow = BASE_FLOW[kind];
+    var flow = baseFlow * (1 - 0.5 * removal);
+    return {
+      removalPct: Math.round(removal * 100),
+      outputTurb: outputTurb,
+      flow: flow
+    };
+  }
+
+  function paintMetrics(prefix, result){
+    var box = document.getElementById('metrics' + prefix);
+    var rows = box.querySelectorAll('div');
+    rows[0].querySelector('span:last-child').textContent = result.removalPct + '%';
+    rows[1].querySelector('span:last-child').textContent = fmt(result.outputTurb, 'mg/L');
+    rows[2].querySelector('span:last-child').textContent = fmt(result.flow, 'L/hr');
+  }
+
+  function animateBeaker(id, color){
+    var el = document.getElementById(id);
+    el.style.background = 'var(--surface-2)';
+    setTimeout(function(){ el.style.background = color; }, 700);
+  }
+
+  runBtn.addEventListener('click', function(){
+    var inputTurb = parseFloat(turbSlider.value);
+    var pollutant = state.pollutant;
+    var coated = coatToggle.checked;
+
+    var control = runFor('control', inputTurb, pollutant, false);
+    var ash = runFor('ash', inputTurb, pollutant, coated);
+
+    paintMetrics('Control', control);
+    paintMetrics('Ash', ash);
+
+    animateBeaker('beakerControl', murkColor(control.outputTurb));
+    animateBeaker('beakerAsh', murkColor(ash.outputTurb));
+
+    runBtn.textContent = 'Run again';
+  });
 })();
 </script>
+
 </body>
 </html>
-
-
